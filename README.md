@@ -125,13 +125,9 @@ Then define a 30-entry schedule array for your city (each entry: `[sehri_hour, s
 
 ## 🤲 Disclaimer
 
-Timings displayed are calculated approximations for general guidance. Please confirm exact Sehri and Iftar times with your **local mosque** or Islamic authority.
+Timings displayed are calculated approximations for general guidance. Please confirm exact Sehri and Iftar times with your **local mosque** or Islamic authority. Feel free to use it and customize it as per your choice
 
 ---
-
-## 👤 Author
-
-Designed & developed by **Gulshad**
 
 ---
 
