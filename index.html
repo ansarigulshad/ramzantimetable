@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ramzan 2026 - Sehri & Iftar Timings | Designed by Gulshad</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D080;
+    --deep: #0A0C1A;
+    --midnight: #0D1428;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--deep);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Josefin Sans', sans-serif;
+    overflow-x: hidden;
+    padding: 20px;
+  }
+  .stars-bg { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+  .star-dot { position:absolute; background:white; border-radius:50%; animation:twinkle var(--d) ease-in-out infinite alternate; }
+  @keyframes twinkle { from{opacity:0.1;transform:scale(0.8)} to{opacity:1;transform:scale(1.2)} }
+
+  .card {
+    position:relative; z-index:1; width:100%; max-width:860px;
+    background: linear-gradient(160deg,#0D1428 0%,#0A1A2F 40%,#0C1E1A 100%);
+    border-radius:4px; border:1px solid rgba(201,168,76,0.25);
+    overflow:hidden;
+    box-shadow:0 0 80px rgba(201,168,76,0.15),0 0 200px rgba(0,0,0,0.8),inset 0 0 60px rgba(0,0,0,0.5);
+    animation:fadeInUp 1s ease forwards; opacity:0;
+  }
+  @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  .card::before { content:''; position:absolute; inset:8px; border:1px solid rgba(201,168,76,0.12); border-radius:2px; pointer-events:none; z-index:0; }
+
+  .top-band { background:linear-gradient(90deg,transparent,rgba(201,168,76,0.08),rgba(201,168,76,0.15),rgba(201,168,76,0.08),transparent); height:3px; }
+  .designed-by { position:absolute; top:14px; right:18px; font-size:0.58rem; letter-spacing:0.25em; color:rgba(201,168,76,0.55); text-transform:uppercase; font-weight:300; z-index:10; }
+  .designed-by span { color:var(--gold-light); font-weight:600; }
+
+  .pattern-top { position:relative; padding:30px 40px 20px; text-align:center; }
+  .arabic-text { font-family:'Amiri',serif; font-size:2.2rem; color:var(--gold-light); letter-spacing:0.05em; text-shadow:0 0 30px rgba(240,208,128,0.4); line-height:1.4; animation:glow 3s ease-in-out infinite alternate; }
+  @keyframes glow { from{text-shadow:0 0 20px rgba(240,208,128,0.3)} to{text-shadow:0 0 50px rgba(240,208,128,0.7),0 0 100px rgba(201,168,76,0.3)} }
+  .ornament-line { display:flex; align-items:center; justify-content:center; gap:12px; margin:12px 0; }
+  .ornament-line::before,.ornament-line::after { content:''; flex:1; max-width:120px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+  .diamond { width:8px; height:8px; background:var(--gold); transform:rotate(45deg); flex-shrink:0; box-shadow:0 0 10px var(--gold); }
+  .diamond-sm { width:4px; height:4px; background:var(--gold-light); transform:rotate(45deg); flex-shrink:0; }
+  .main-title { font-family:'Cinzel Decorative',serif; font-size:2.6rem; color:var(--gold-light); letter-spacing:0.1em; text-transform:uppercase; line-height:1.2; text-shadow:0 2px 20px rgba(201,168,76,0.4); }
+  .main-title span { display:block; font-size:1rem; color:var(--gold); letter-spacing:0.4em; margin-bottom:6px; font-weight:400; }
+  .year-badge { display:inline-block; background:linear-gradient(135deg,rgba(201,168,76,0.2),rgba(201,168,76,0.05)); border:1px solid rgba(201,168,76,0.4); color:var(--gold-light); font-size:0.8rem; letter-spacing:0.35em; padding:6px 20px; margin:8px 0 0; font-weight:600; }
+
+  .moon-section { display:flex; justify-content:center; padding:10px 0 5px; }
+  .moon-svg { filter:drop-shadow(0 0 20px rgba(201,168,76,0.6)); animation:moonFloat 4s ease-in-out infinite alternate; }
+  @keyframes moonFloat { from{transform:translateY(0px);filter:drop-shadow(0 0 15px rgba(201,168,76,0.5))} to{transform:translateY(-8px);filter:drop-shadow(0 0 35px rgba(201,168,76,0.9))} }
+
+  .timings-section { padding:20px 40px 30px; }
+  .section-label { text-align:center; font-size:0.7rem; letter-spacing:0.5em; color:var(--gold); text-transform:uppercase; margin-bottom:20px; opacity:0.8; }
+
+  /* City selector tabs */
+  .city-tabs { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:16px; }
+  .city-tab {
+    background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.2);
+    color:rgba(201,168,76,0.7); font-family:'Josefin Sans',sans-serif;
+    font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase;
+    padding:7px 14px; cursor:pointer; border-radius:2px;
+    transition:all 0.25s ease;
+  }
+  .city-tab:hover { background:rgba(201,168,76,0.14); color:var(--gold-light); border-color:rgba(201,168,76,0.4); }
+  .city-tab.active {
+    background:linear-gradient(135deg,rgba(201,168,76,0.22),rgba(201,168,76,0.08));
+    border-color:rgba(201,168,76,0.6); color:var(--gold-light);
+    box-shadow:0 0 16px rgba(201,168,76,0.15);
+  }
+  .city-tab.pune-tab.active { border-color:var(--gold); color:#fff; }
+
+  /* Full schedule table */
+  .schedule-panel {
+    background:rgba(201,168,76,0.05); border:1px solid rgba(201,168,76,0.15);
+    border-radius:2px; overflow:hidden; margin-bottom:24px;
+    animation:panelIn 0.35s ease;
+  }
+  @keyframes panelIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+  .schedule-panel table { width:100%; border-collapse:collapse; }
+  .schedule-panel thead tr { background:rgba(201,168,76,0.1); }
+  .schedule-panel th { padding:8px 12px; font-size:0.6rem; letter-spacing:0.3em; color:var(--gold); font-weight:400; text-transform:uppercase; }
+  .schedule-panel td { padding:6px 12px; border-top:1px solid rgba(201,168,76,0.07); font-size:0.75rem; }
+
+  /* City cards grid */
+  .city-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
+  .city-card {
+    background:linear-gradient(135deg,rgba(201,168,76,0.08) 0%,rgba(201,168,76,0.03) 100%);
+    border:1px solid rgba(201,168,76,0.2); border-radius:2px; padding:14px 12px;
+    text-align:center; cursor:pointer; transition:all 0.3s ease;
+    animation:cardIn 0.8s ease both;
+  }
+  .city-card:nth-child(1){animation-delay:0.1s} .city-card:nth-child(2){animation-delay:0.2s} .city-card:nth-child(3){animation-delay:0.3s}
+  .city-card:nth-child(4){animation-delay:0.4s} .city-card:nth-child(5){animation-delay:0.5s} .city-card:nth-child(6){animation-delay:0.6s}
+  @keyframes cardIn { from{opacity:0;transform:scale(0.9)} to{opacity:1;transform:scale(1)} }
+  .city-card:hover { border-color:rgba(201,168,76,0.5); background:linear-gradient(135deg,rgba(201,168,76,0.14) 0%,rgba(201,168,76,0.06) 100%); transform:translateY(-3px); box-shadow:0 8px 30px rgba(0,0,0,0.4),0 0 20px rgba(201,168,76,0.1); }
+  .city-card.active { border-color:var(--gold) !important; background:linear-gradient(135deg,rgba(201,168,76,0.2) 0%,rgba(201,168,76,0.08) 100%) !important; box-shadow:0 0 25px rgba(201,168,76,0.2); }
+  .city-name { font-family:'Cinzel Decorative',serif; font-size:0.68rem; color:var(--gold-light); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:10px; }
+  .timing-row { display:flex; align-items:center; justify-content:space-between; margin:5px 0; }
+  .timing-label { font-size:0.6rem; letter-spacing:0.2em; color:rgba(201,168,76,0.6); text-transform:uppercase; display:flex; align-items:center; gap:5px; }
+  .timing-label .dot { width:5px; height:5px; border-radius:50%; background:var(--gold); opacity:0.7; }
+  .timing-label .dot.iftar { background:#FF8C42; }
+  .timing-value { font-size:0.88rem; font-weight:600; color:white; letter-spacing:0.05em; }
+  .timing-value.sehri { color:#A8D8EA; } .timing-value.iftar { color:#FFBB85; }
+  .divider-mini { height:1px; background:linear-gradient(90deg,transparent,rgba(201,168,76,0.15),transparent); margin:6px 0; }
+  .pune-highlight { border-color:rgba(201,168,76,0.5) !important; background:linear-gradient(135deg,rgba(201,168,76,0.16) 0%,rgba(201,168,76,0.07) 100%) !important; }
+  .pune-badge { display:inline-block; background:var(--gold); color:var(--deep); font-size:0.48rem; font-weight:700; letter-spacing:0.2em; padding:2px 6px; border-radius:1px; text-transform:uppercase; margin-left:4px; vertical-align:middle; }
+
+  /* Click hint */
+  .click-hint { text-align:center; font-size:0.6rem; letter-spacing:0.3em; color:rgba(201,168,76,0.4); text-transform:uppercase; margin-bottom:14px; }
+
+  /* Today box */
+  .today-box { background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(201,168,76,0.05)); border:1px solid rgba(201,168,76,0.35); border-radius:2px; padding:16px 24px; text-align:center; margin:0 0 20px; position:relative; overflow:hidden; }
+  .today-box::before { content:''; position:absolute; top:0; left:-100%; width:60%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.03),transparent); animation:shimmer 3s ease-in-out infinite; }
+  @keyframes shimmer { 0%{left:-100%} 100%{left:200%} }
+  .today-label { font-size:0.65rem; letter-spacing:0.4em; color:var(--gold); text-transform:uppercase; margin-bottom:8px; }
+  .today-date { font-family:'Amiri',serif; font-size:1.1rem; color:var(--gold-light); margin-bottom:10px; }
+  .today-timings { display:flex; justify-content:center; gap:40px; margin-top:8px; }
+  .today-timing-item { text-align:center; }
+  .today-timing-label { font-size:0.6rem; letter-spacing:0.3em; color:rgba(201,168,76,0.7); text-transform:uppercase; margin-bottom:4px; }
+  .today-timing-val { font-size:1.4rem; font-weight:600; letter-spacing:0.05em; }
+  .today-timing-val.s { color:#A8D8EA; } .today-timing-val.i { color:#FFBB85; }
+  .vertical-divider { width:1px; background:linear-gradient(to bottom,transparent,rgba(201,168,76,0.3),transparent); }
+
+  /* Dua section */
+  .dua-section { margin-bottom:24px; }
+  .dua-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .dua-card { background:linear-gradient(135deg,rgba(201,168,76,0.07),rgba(201,168,76,0.02)); border:1px solid rgba(201,168,76,0.2); border-radius:2px; padding:18px 16px; text-align:center; transition:all 0.3s ease; }
+  .dua-card:hover { border-color:rgba(201,168,76,0.4); background:linear-gradient(135deg,rgba(201,168,76,0.12),rgba(201,168,76,0.05)); }
+  .dua-type { font-size:0.6rem; letter-spacing:0.35em; color:var(--gold); text-transform:uppercase; margin-bottom:10px; font-weight:600; }
+  .dua-arabic { font-family:'Amiri',serif; font-size:1.15rem; color:var(--gold-light); line-height:2; direction:rtl; text-align:right; padding:10px 12px; background:rgba(0,0,0,0.2); border-radius:2px; margin-bottom:10px; }
+  .dua-transliteration { font-size:0.68rem; color:rgba(255,255,255,0.6); line-height:1.7; font-style:italic; margin-bottom:8px; }
+  .dua-meaning { font-size:0.65rem; color:rgba(201,168,76,0.7); line-height:1.6; }
+
+  /* Footer */
+  .card-footer { padding:16px 40px 24px; text-align:center; border-top:1px solid rgba(201,168,76,0.1); }
+  .footer-text { font-family:'Amiri',serif; font-size:1.1rem; color:rgba(201,168,76,0.7); letter-spacing:0.08em; line-height:1.6; }
+  .footer-sub { font-size:0.62rem; letter-spacing:0.3em; color:rgba(201,168,76,0.35); text-transform:uppercase; margin-top:8px; }
+  .star-row { display:flex; justify-content:center; gap:8px; margin:10px 0; }
+  .star-icon { color:var(--gold); font-size:0.7rem; opacity:0.6; }
+
+  @media(max-width:600px){
+    .city-grid{grid-template-columns:repeat(2,1fr)}
+    .dua-grid{grid-template-columns:1fr}
+    .main-title{font-size:1.8rem}
+    .arabic-text{font-size:1.6rem}
+    .pattern-top{padding:20px 20px 15px}
+    .timings-section{padding:15px 20px 20px}
+    .card-footer{padding:12px 20px 18px}
+    .today-timings{gap:20px}
+  }
+</style>
+</head>
+<body>
+<div class="stars-bg" id="stars"></div>
+
+<div class="card">
+  <div class="top-band"></div>
+  <div class="designed-by">Designed by <span>Gulshad</span></div>
+
+  <!-- Header -->
+  <div class="pattern-top">
+    <div class="arabic-text">رَمَضَان مُبَارَك</div>
+    <div class="ornament-line"><div class="diamond-sm"></div><div class="diamond"></div><div class="diamond-sm"></div></div>
+    <div class="main-title"><span>✦ Holy Month of ✦</span>Ramzan</div>
+    <div class="year-badge">2026 &nbsp;·&nbsp; 1447 AH &nbsp;·&nbsp; INDIA</div>
+  </div>
+
+  <!-- Moon -->
+  <div class="moon-section">
+    <svg class="moon-svg" width="100" height="80" viewBox="0 0 100 80" fill="none">
+      <path d="M65 40 C65 55.46 52.46 68 37 68 C35.2 68 33.44 67.84 31.74 67.54 C40.6 65.28 47 57.36 47 48 C47 37.4 39.44 28.64 29.4 26.78 C32.14 25.64 35.06 25 38.14 25 C52.96 25 65 31.34 65 40Z" fill="url(#moonGrad)"/>
+      <polygon points="76,18 78,24 84,24 79.2,28 81.2,34 76,30.4 70.8,34 72.8,28 68,24 74,24" fill="#FFE680" opacity="0.95"/>
+      <circle cx="55" cy="15" r="1.5" fill="#FFE680" opacity="0.8"/>
+      <circle cx="85" cy="42" r="1" fill="#FFE680" opacity="0.6"/>
+      <circle cx="30" cy="20" r="1" fill="#FFE680" opacity="0.5"/>
+      <defs><linearGradient id="moonGrad" x1="29" y1="25" x2="65" y2="68" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#F0D080"/><stop offset="100%" stop-color="#C9A84C"/></linearGradient></defs>
+    </svg>
+  </div>
+
+  <div class="timings-section">
+
+    <!-- Today box -->
+    <div class="today-box">
+      <div class="today-label" id="rozaLabel">✦ Today · Roza · Ramzan 1447 AH ✦</div>
+      <div class="today-date" id="todayDate">— &nbsp;·&nbsp; <span style="color:var(--gold);font-size:0.85rem;">Pune</span></div>
+      <div id="liveClock" style="font-size:1.6rem;font-weight:700;letter-spacing:0.12em;color:white;margin:6px 0 2px;"></div>
+      <div id="countdownLabel" style="font-size:0.6rem;letter-spacing:0.3em;color:rgba(201,168,76,0.7);text-transform:uppercase;margin-bottom:6px;"></div>
+      <div id="countdown" style="font-size:1.1rem;font-weight:700;letter-spacing:0.15em;color:var(--gold-light);margin-bottom:10px;"></div>
+      <div class="today-timings">
+        <div class="today-timing-item"><div class="today-timing-label">🌙 Sehri Ends</div><div class="today-timing-val s" id="todaySehri">—</div></div>
+        <div class="vertical-divider"></div>
+        <div class="today-timing-item"><div class="today-timing-label">☀️ Iftar Time</div><div class="today-timing-val i" id="todayIftar">—</div></div>
+      </div>
+    </div>
+
+    <!-- City cards - today's timings -->
+    <div class="section-label">✦ Today's Timings — Tap a City for Full Schedule ✦</div>
+    <div class="click-hint">🕌 Click any city card to view its complete Ramzan timetable</div>
+    <div class="city-grid" id="cityGrid"></div>
+
+    <!-- Full Schedule Panel -->
+    <div id="schedulePanel" style="display:none;"></div>
+
+
+
+  </div>
+
+  <!-- Footer -->
+  <div class="card-footer">
+    <div class="ornament-line"><div class="diamond-sm"></div><div class="diamond"></div><div class="diamond-sm"></div></div>
+    <div class="footer-text">"Ramzan Mubarak" — رمضان المبارك</div>
+    <div class="star-row"><span class="star-icon">✦</span><span class="star-icon">★</span><span class="star-icon">✦</span><span class="star-icon">★</span><span class="star-icon">✦</span></div>
+    <div class="footer-sub">Timings may vary slightly · Verify with local mosque · 1447 Hijri</div>
+  </div>
+  <div class="top-band" style="transform:rotate(180deg);"></div>
+</div>
+
+<script>
+// ── Stars ──
+const starsContainer = document.getElementById('stars');
+for (let i = 0; i < 120; i++) {
+  const s = document.createElement('div');
+  s.className = 'star-dot';
+  const sz = Math.random()*2.5+0.5;
+  s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${Math.random()*3+1.5}s;animation-delay:${Math.random()*3}s;opacity:${Math.random()*0.6+0.1};`;
+  starsContainer.appendChild(s);
+}
+
+// ── City data ──
+// Each city: name, key, today sehri/iftar, and 30-day schedule
+// Schedule: [sh_h, sh_m, if_h, if_m] per day starting Feb 19
+const DAYS = [
+  'Thu 19 Feb','Fri 20 Feb','Sat 21 Feb','Sun 22 Feb','Mon 23 Feb','Tue 24 Feb',
+  'Wed 25 Feb','Thu 26 Feb','Fri 27 Feb','Sat 28 Feb','Sun 1 Mar','Mon 2 Mar',
+  'Tue 3 Mar','Wed 4 Mar','Thu 5 Mar','Fri 6 Mar','Sat 7 Mar','Sun 8 Mar',
+  'Mon 9 Mar','Tue 10 Mar','Wed 11 Mar','Thu 12 Mar','Fri 13 Mar','Sat 14 Mar',
+  'Sun 15 Mar','Mon 16 Mar','Tue 17 Mar','Wed 18 Mar','Thu 19 Mar','Fri 20 Mar'
+];
+const DAY_NAMES = ['Jumeraat','Juma','Saneechar','Itwaar','Peer','Mangal','Budh',
+  'Jumeraat','Juma','Saneechar','Itwaar','Peer','Mangal','Budh',
+  'Jumeraat','Juma','Saneechar','Itwaar','Peer','Mangal','Budh',
+  'Jumeraat','Juma','Saneechar','Itwaar','Peer','Mangal','Budh','Jumeraat','Juma'];
+
+// Pune sehri/iftar pairs for 30 days
+const puneSchedule = [
+  [5,42,18,39],[5,41,18,40],[5,41,18,40],[5,40,18,40],[5,40,18,41],[5,39,18,41],
+  [5,38,18,41],[5,38,18,42],[5,37,18,42],[5,37,18,42],[5,36,18,43],[5,35,18,43],
+  [5,34,18,43],[5,33,18,44],[5,33,18,44],[5,32,18,44],[5,32,18,44],[5,31,18,44],
+  [5,30,18,45],[5,29,18,45],[5,28,18,45],[5,27,18,46],[5,26,18,46],[5,25,18,46],
+  [5,25,18,46],[5,24,18,47],[5,23,18,47],[5,22,18,47],[5,21,18,47],[5,20,18,48]
+];
+// Mumbai schedule
+const mumbaiSchedule = [
+  [5,58,18,41],[5,57,18,41],[5,57,18,42],[5,56,18,42],[5,56,18,42],[5,55,18,43],
+  [5,54,18,43],[5,54,18,44],[5,53,18,44],[5,52,18,44],[5,52,18,45],[5,51,18,45],
+  [5,50,18,46],[5,49,18,46],[5,49,18,46],[5,48,18,47],[5,47,18,47],[5,47,18,47],
+  [5,46,18,48],[5,45,18,48],[5,44,18,48],[5,43,18,49],[5,42,18,49],[5,42,18,49],
+  [5,41,18,50],[5,40,18,50],[5,39,18,50],[5,38,18,51],[5,37,18,51],[5,36,18,51]
+];
+// Delhi schedule
+const delhiSch = [
+  [5,36,18,15],[5,35,18,16],[5,34,18,16],[5,34,18,17],[5,33,18,17],[5,32,18,18],
+  [5,31,18,18],[5,30,18,19],[5,30,18,19],[5,29,18,20],[5,28,18,20],[5,27,18,21],
+  [5,26,18,21],[5,25,18,22],[5,24,18,22],[5,23,18,23],[5,22,18,23],[5,21,18,24],
+  [5,20,18,24],[5,19,18,25],[5,18,18,25],[5,17,18,26],[5,16,18,26],[5,15,18,27],
+  [5,14,18,27],[5,13,18,28],[5,12,18,28],[5,11,18,29],[5,10,18,29],[5,9,18,30]
+];
+// Hyderabad schedule
+const hyderabadSchedule = [
+  [5,40,18,28],[5,39,18,29],[5,39,18,29],[5,38,18,29],[5,38,18,30],[5,37,18,30],
+  [5,36,18,30],[5,36,18,31],[5,35,18,31],[5,34,18,31],[5,34,18,32],[5,33,18,32],
+  [5,32,18,32],[5,31,18,33],[5,31,18,33],[5,30,18,33],[5,29,18,34],[5,28,18,34],
+  [5,27,18,34],[5,27,18,35],[5,26,18,35],[5,25,18,35],[5,24,18,36],[5,23,18,36],
+  [5,22,18,36],[5,21,18,37],[5,20,18,37],[5,19,18,37],[5,18,18,38],[5,17,18,38]
+];
+// Solapur schedule (slightly earlier than Pune)
+const solapurSchedule = [
+  [5,38,18,36],[5,37,18,37],[5,37,18,37],[5,36,18,37],[5,36,18,38],[5,35,18,38],
+  [5,34,18,38],[5,34,18,39],[5,33,18,39],[5,33,18,39],[5,32,18,40],[5,31,18,40],
+  [5,30,18,40],[5,29,18,41],[5,29,18,41],[5,28,18,41],[5,28,18,41],[5,27,18,41],
+  [5,26,18,42],[5,25,18,42],[5,24,18,42],[5,23,18,43],[5,22,18,43],[5,21,18,43],
+  [5,21,18,43],[5,20,18,44],[5,19,18,44],[5,18,18,44],[5,17,18,44],[5,16,18,45]
+];
+// Bangalore schedule
+const bangaloreSchedule = [
+  [5,35,18,30],[5,34,18,30],[5,34,18,31],[5,33,18,31],[5,33,18,31],[5,32,18,32],
+  [5,31,18,32],[5,31,18,32],[5,30,18,33],[5,29,18,33],[5,29,18,33],[5,28,18,34],
+  [5,27,18,34],[5,26,18,34],[5,26,18,34],[5,25,18,35],[5,24,18,35],[5,23,18,35],
+  [5,22,18,36],[5,22,18,36],[5,21,18,36],[5,20,18,37],[5,19,18,37],[5,18,18,37],
+  [5,17,18,37],[5,16,18,38],[5,15,18,38],[5,14,18,38],[5,13,18,38],[5,12,18,39]
+];
+
+const cities = [
+  { key:'pune',      name:'Pune',       isPune:true,  sch:puneSchedule },
+  { key:'mumbai',    name:'Mumbai',      isPune:false, sch:mumbaiSchedule },
+  { key:'delhi',     name:'Delhi',       isPune:false, sch:delhiSch  },
+  { key:'hyderabad', name:'Hyderabad',   isPune:false, sch:hyderabadSchedule },
+  { key:'solapur',   name:'Solapur',     isPune:false, sch:solapurSchedule },
+  { key:'bangalore', name:'Bangalore',   isPune:false, sch:bangaloreSchedule },
+];
+
+// ── Today index ──
+const ramzanStart = new Date(2026,1,19); // Feb 19 2026
+function getTodayIndex() {
+  const now = new Date();
+  const today = new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const diff = Math.floor((today - ramzanStart) / 86400000);
+  return diff >= 0 && diff < 30 ? diff : -1;
+}
+
+function fmt12(h, m) {
+  const a = h >= 12 ? 'PM' : 'AM';
+  const hh = h%12||12;
+  return `${hh}:${String(m).padStart(2,'0')} ${a}`;
+}
+function ordinal(n) {
+  const s=['th','st','nd','rd'],v=n%100;
+  return n+(s[(v-20)%10]||s[v]||s[0]);
+}
+
+// ── Build city cards ──
+let activeCity = null;
+const grid = document.getElementById('cityGrid');
+
+cities.forEach(city => {
+  const card = document.createElement('div');
+  card.className = 'city-card' + (city.isPune ? ' pune-highlight' : '');
+  card.id = 'card-' + city.key;
+
+  const idx = getTodayIndex();
+  const sch = city.sch;
+  const todaySch = idx >= 0 ? sch[idx] : sch[0];
+
+  card.innerHTML = `
+    <div class="city-name">${city.name}${city.isPune ? '<span class="pune-badge">You</span>' : ''}</div>
+    <div class="timing-row">
+      <span class="timing-label"><span class="dot"></span>Sehri</span>
+      <span class="timing-value sehri">${fmt12(todaySch[0],todaySch[1])}</span>
+    </div>
+    <div class="divider-mini"></div>
+    <div class="timing-row">
+      <span class="timing-label"><span class="dot iftar"></span>Iftar</span>
+      <span class="timing-value iftar">${fmt12(todaySch[2],todaySch[3])}</span>
+    </div>
+  `;
+
+  card.addEventListener('click', () => toggleSchedule(city, card));
+  grid.appendChild(card);
+});
+
+// ── Schedule panel toggle ──
+function toggleSchedule(city, card) {
+  const panel = document.getElementById('schedulePanel');
+
+  if (activeCity === city.key) {
+    // Close
+    panel.style.display = 'none';
+    card.classList.remove('active');
+    activeCity = null;
+    return;
+  }
+
+  // Deactivate previous
+  document.querySelectorAll('.city-card').forEach(c => c.classList.remove('active'));
+  card.classList.add('active');
+  activeCity = city.key;
+
+  const todayIdx = getTodayIndex();
+  let rows = '';
+  city.sch.forEach((d, i) => {
+    const isToday = i === todayIdx;
+    const isJuma = DAY_NAMES[i] === 'Juma';
+    rows += `<tr style="border-top:1px solid rgba(201,168,76,0.07);${isToday?'background:rgba(201,168,76,0.18);':''}${isJuma&&!isToday?'background:rgba(201,168,76,0.04);':''}">
+      <td style="color:${isToday?'#fff':'rgba(255,255,255,0.75)'};font-weight:${isToday?'600':'400'};white-space:nowrap;">
+        ${DAYS[i]}${isToday?' <span style="font-size:0.52rem;background:var(--gold);color:#0A0C1A;padding:1px 5px;border-radius:1px;font-weight:700;vertical-align:middle;">TODAY</span>':''}
+      </td>
+      <td style="text-align:center;font-size:0.65rem;color:${isJuma?'#FFE680':'rgba(201,168,76,0.6)'};font-weight:${isJuma?'600':'400'};">${DAY_NAMES[i]}</td>
+      <td style="text-align:center;font-size:0.6rem;color:var(--gold);font-weight:700;">${i+1}</td>
+      <td style="text-align:center;font-weight:600;color:#A8D8EA;">${fmt12(d[0],d[1])}</td>
+      <td style="text-align:center;font-weight:600;color:#FFBB85;">${fmt12(d[2],d[3])}</td>
+    </tr>`;
+  });
+
+  panel.innerHTML = `
+    <div style="background:rgba(201,168,76,0.1);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-family:'Cinzel Decorative',serif;font-size:0.8rem;color:var(--gold-light);letter-spacing:0.15em;">${city.name} — Full Ramzan 2026 Schedule</span>
+      <span onclick="closePanel()" style="cursor:pointer;color:rgba(201,168,76,0.6);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;padding:3px 8px;border:1px solid rgba(201,168,76,0.3);border-radius:2px;transition:all 0.2s ease;" onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='rgba(201,168,76,0.6)'">✕ Close</span>
+    </div>
+    <div style="max-height:320px;overflow-y:auto;">
+      <table style="width:100%;border-collapse:collapse;">
+        <thead><tr style="background:rgba(201,168,76,0.08);position:sticky;top:0;">
+          <th style="padding:8px 12px;text-align:left;font-size:0.6rem;letter-spacing:0.3em;color:var(--gold);font-weight:400;text-transform:uppercase;">Date</th>
+          <th style="padding:8px 8px;text-align:center;font-size:0.6rem;letter-spacing:0.2em;color:var(--gold);font-weight:400;text-transform:uppercase;">Din</th>
+          <th style="padding:8px 8px;text-align:center;font-size:0.6rem;letter-spacing:0.2em;color:var(--gold);font-weight:400;text-transform:uppercase;">Roza</th>
+          <th style="padding:8px 12px;text-align:center;font-size:0.6rem;letter-spacing:0.3em;color:#A8D8EA;font-weight:400;text-transform:uppercase;">🌙 Sehri</th>
+          <th style="padding:8px 12px;text-align:center;font-size:0.6rem;letter-spacing:0.3em;color:#FFBB85;font-weight:400;text-transform:uppercase;">☀️ Iftar</th>
+        </tr></thead>
+        <tbody style="font-size:0.75rem;">${rows}</tbody>
+      </table>
+    </div>
+  `;
+
+  panel.className = 'schedule-panel';
+  panel.style.display = 'block';
+
+  // Scroll panel into view
+  setTimeout(() => panel.scrollIntoView({ behavior:'smooth', block:'nearest' }), 100);
+
+  // Scroll today row into view
+  setTimeout(() => {
+    const todayRow = panel.querySelectorAll('tbody tr')[todayIdx];
+    if (todayRow) todayRow.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }, 200);
+}
+
+function closePanel() {
+  document.getElementById('schedulePanel').style.display = 'none';
+  document.querySelectorAll('.city-card').forEach(c => c.classList.remove('active'));
+  activeCity = null;
+}
+
+// ── Today box updates ──
+function updateTodayBox() {
+  const idx = getTodayIndex();
+  const now = new Date();
+
+  const hh = String(now.getHours()).padStart(2,'0');
+  const mm = String(now.getMinutes()).padStart(2,'0');
+  const ss = String(now.getSeconds()).padStart(2,'0');
+  document.getElementById('liveClock').textContent = `${hh}:${mm}:${ss}`;
+
+  if (idx < 0) {
+    document.getElementById('rozaLabel').textContent = '✦ Ramzan 2026 · 1447 AH ✦';
+    document.getElementById('todayDate').innerHTML = 'Ramzan has concluded — Eid Mubarak! 🌙 &nbsp;·&nbsp; <span style="color:var(--gold);font-size:0.85rem;">Pune</span>';
+    document.getElementById('todaySehri').textContent = '—';
+    document.getElementById('todayIftar').textContent = '—';
+    document.getElementById('countdownLabel').textContent = '';
+    document.getElementById('countdown').textContent = '';
+    return;
+  }
+
+  const d = puneSchedule[idx];
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const daysOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const dateObj = new Date(ramzanStart.getTime() + idx*86400000);
+
+  document.getElementById('rozaLabel').textContent = `✦ Today · ${ordinal(idx+1)} Roza · Ramzan 1447 AH ✦`;
+  document.getElementById('todayDate').innerHTML = `${daysOfWeek[dateObj.getDay()]}, ${dateObj.getDate()} ${months[dateObj.getMonth()]} 2026 &nbsp;·&nbsp; <span style="color:var(--gold);font-size:0.85rem;">Pune</span>`;
+  document.getElementById('todaySehri').textContent = fmt12(d[0],d[1]);
+  document.getElementById('todayIftar').textContent = fmt12(d[2],d[3]);
+
+  const sehriMs = new Date(now.getFullYear(),now.getMonth(),now.getDate(),d[0],d[1],0).getTime();
+  const iftarMs = new Date(now.getFullYear(),now.getMonth(),now.getDate(),d[2],d[3],0).getTime();
+  const nowMs = now.getTime();
+
+  let targetMs, labelTxt, labelColor;
+  if (nowMs < sehriMs) { targetMs=sehriMs; labelTxt='🌙 Time remaining until Sehri ends'; labelColor='#A8D8EA'; }
+  else if (nowMs < iftarMs) { targetMs=iftarMs; labelTxt='☀️ Time remaining until Iftar'; labelColor='#FFBB85'; }
+  else {
+    const nextIdx = idx+1;
+    if (nextIdx < 30) {
+      const nd = puneSchedule[nextIdx];
+      const nextDate = new Date(ramzanStart.getTime() + nextIdx*86400000);
+      targetMs = new Date(nextDate.getFullYear(),nextDate.getMonth(),nextDate.getDate(),nd[0],nd[1],0).getTime();
+      labelTxt = "🌙 Time until tomorrow's Sehri"; labelColor='#A8D8EA';
+    } else {
+      document.getElementById('countdownLabel').textContent = '';
+      document.getElementById('countdown').textContent = '';
+      return;
+    }
+  }
+
+  const diff = targetMs - nowMs;
+  const hours = Math.floor(diff/3600000);
+  const mins = Math.floor((diff%3600000)/60000);
+  const secs = Math.floor((diff%60000)/1000);
+  document.getElementById('countdownLabel').innerHTML = `<span style="color:${labelColor}">${labelTxt}</span>`;
+  document.getElementById('countdown').innerHTML = `<span style="color:${labelColor}">${String(hours).padStart(2,'0')}h &nbsp;${String(mins).padStart(2,'0')}m &nbsp;${String(secs).padStart(2,'0')}s</span>`;
+}
+
+updateTodayBox();
+setInterval(updateTodayBox, 1000);
+</script>
+</body>
+</html>
